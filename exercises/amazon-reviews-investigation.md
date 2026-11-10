@@ -9,7 +9,7 @@ preferences you used in the earlier exercises.
 
 ## 1. Look for campaigns
 
-Ask your agent to investigate [the review CSV](data/fake-reviews-data.csv) for
+Ask your agent to investigate [the review CSV](../data/fake-reviews-data.csv) for
 potential campaigns. Watch for it to use `safe-data-ingestion`,
 `campaign-identification`, and `investigation-fake-reviews`.
 
