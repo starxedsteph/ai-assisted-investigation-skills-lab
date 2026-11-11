@@ -10,31 +10,22 @@ The investigation skills live in the separate
 [AI Investigation Skills repository](https://github.com/starxedsteph/ai-assisted-investigation-skills).
 Use an AI agent with local file access and the tools needed for analysis.
 
-One way to get started is to clone that repository and start your agent from
-its folder:
-
-```bash
-git clone https://github.com/starxedsteph/ai-assisted-investigation-skills.git
-cd ai-assisted-investigation-skills
-```
-
-Tell your agent to read the relevant `skills/<skill-name>/SKILL.md` and follow
-its instructions, and give it the path to this lab's data when needed. Simply
-starting in the folder does not mean every agent automatically loads the skills.
-
-For automatic discovery, you can instead install the complete collection in
-your lab workspace or your agent's personal skills directory. For example,
-Copilot CLI supports `.github/skills/` in a project and `~/.copilot/skills/`
-for personal use; Claude Code supports `.claude/skills/` and `~/.claude/skills/`.
-Copy the contents of the source `skills/` directory, keeping the skill folders
-and their bundled files together. Copilot CLI can also use the checkout directly:
-use `/skills add` to add its absolute `skills/` path, then `/skills reload`.
-See the skills repository's
+To set up automatic discovery, install the complete collection in a skills
+location supported by your agent. For this lab, a project-level location makes
+the skills available whenever you work in the lab workspace. For example,
+Copilot CLI supports `.github/skills/` and Claude Code supports `.claude/skills/`;
+personal locations are also available. Copy the contents of the source
+repository's `skills/` directory, keeping each skill folder and its bundled
+files together. The skills repository's
 [install and load guide](https://github.com/starxedsteph/ai-assisted-investigation-skills#install-and-load)
-for details and other supported options.
+covers supported locations and setup for different agents. Follow your agent's
+own instructions if it needs an additional step to discover or reload skills.
 
-Once the skills are available, ask your agent to use one by name, such as
-`investigation-engagement-farming`, and work through the lab together.
+Once installed, describe what you want to investigate in natural language and
+let your agent choose the relevant skills. For example: “Help me investigate
+possible engagement manipulation in this lab's data.” You can also name a
+specific skill if you prefer. Give your agent the path to the lab data when
+needed.
 
 ## Set up BigQuery
 
