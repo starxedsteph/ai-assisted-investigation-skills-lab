@@ -4,6 +4,11 @@ Practice investigating with an AI agent: ask questions, check evidence, and
 decide how to present your findings. Follow the guides yourself rather than
 giving the whole lab to your agent.
 
+## Workshop resources
+
+- **[Live presentation slides](https://starxedsteph.github.io/ai-assisted-investigation-skills-lab/)**
+- **[Resources & reference links](resources/README.md)**
+
 ## Set up investigation skills
 
 These labs use the [AI Investigation Skills](https://github.com/starxedsteph/ai-assisted-investigation-skills).
