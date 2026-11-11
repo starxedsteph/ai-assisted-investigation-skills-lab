@@ -65,10 +65,33 @@ function setPaused(p) {
 }
 
 document.addEventListener('keydown', e => {
+  if (['INPUT', 'TEXTAREA', 'BUTTON', 'A', 'SELECT'].includes(e.target.tagName)) return;
   if (['ArrowRight', ' ', 'PageDown', 'Enter'].includes(e.key)) { e.preventDefault(); advance(); }
   else if (['ArrowLeft', 'PageUp'].includes(e.key)) { e.preventDefault(); back(); }
   else if (e.key === 'p' || e.key === 'P') { e.preventDefault(); setPaused(!paused); }
 });
+
+// Touch / click navigation for mobile and tablet devices
+let touchStartX = 0;
+let touchStartY = 0;
+document.addEventListener('touchstart', e => {
+  if (['INPUT', 'TEXTAREA', 'BUTTON', 'A', 'SELECT'].includes(e.target.tagName)) return;
+  const touch = e.changedTouches[0];
+  touchStartX = touch.clientX;
+  touchStartY = touch.clientY;
+}, { passive: true });
+
+document.addEventListener('touchend', e => {
+  if (['INPUT', 'TEXTAREA', 'BUTTON', 'A', 'SELECT'].includes(e.target.tagName)) return;
+  const touch = e.changedTouches[0];
+  const deltaX = touch.clientX - touchStartX;
+  const deltaY = touch.clientY - touchStartY;
+  // If swipe is horizontal and greater than 40px
+  if (Math.abs(deltaX) > 40 && Math.abs(deltaY) < 60) {
+    if (deltaX < 0) advance();
+    else back();
+  }
+}, { passive: true });
 
 // ===== RENDER DISPATCH =====
 
@@ -297,7 +320,7 @@ function slideBrowserHTML(s) {
       </nav>
       <div class="sb-body sb-structure-body">
         <main class="sb-structure-main">
-          <div class="sb-structure-tree" role="img" aria-label="Example Agent Skill directory structure">
+          <div class="sb-structure-tree" role="region" aria-label="Example Agent Skill directory structure">
             <div class="sb-structure-root"><span class="sb-dir">my-skill/</span></div>
             <div><span class="sb-tree">├── </span><span class="sb-file">SKILL.md</span><span class="sb-comment"># Required: metadata + instructions</span></div>
             <div><span class="sb-tree">├── </span><span class="sb-dir">scripts/</span><span class="sb-comment"># Optional: executable code</span></div>
@@ -634,7 +657,7 @@ function renderChat(chat) {
   el.innerHTML = '';
   const msgs = chat.messages;
 
-  if (chat.autoPlay) {
+  if (chat.autoPlay && goingForward) {
     autoPlayChat(msgs, el);
     return;
   }
